@@ -1,1 +1,0 @@
-﻿# hth-practice-amv
