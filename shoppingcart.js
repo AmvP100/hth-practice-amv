@@ -6,5 +6,21 @@ const storeProducts = {
   cheese: 4.0
 };
 
-// 2. Shopping cart array (items by name)
 const shoppingCart = ['apples', 'milk', 'cheese', 'eggs'];
+
+function getCartTotal(cart) {
+  let total = 0;
+
+  for (const item of cart) {
+    if (storeProducts[item]) {
+      total = total + storeProducts[item];
+    } else {
+      console.log(item + " is not found in the store");
+    }
+  }
+
+  return total;
+}
+
+const totalPrice = getCartTotal(shoppingCart);
+console.log("Total price: $" + totalPrice.toFixed(2));
