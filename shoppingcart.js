@@ -30,13 +30,13 @@ const cartTotalSpan = document.getElementById("cart-total");
 let total = 0;
 
 function addToCart(item, price) {
-  const li = document.createElement("li");
+  const list = document.createElement("li");
 
   const itemText = document.createTextNode(item + " - $" + price.toFixed(2));
 
-  li.appendChild(itemText);
+  list.appendChild(itemText);
 
-  cartList.appendChild(li);
+  cartList.appendChild(list);
 
   total = total + price;
 
