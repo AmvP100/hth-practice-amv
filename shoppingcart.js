@@ -6,21 +6,39 @@ const storeProducts = {
   cheese: 4.0
 };
 
-const shoppingCart = ['apples', 'milk', 'cheese', 'eggs'];
+const storeItemsDiv = document.getElementById("store-items");
 
-function getCartTotal(cart) {
-  let total = 0;
+for (const item in storeProducts) {
+  const price = storeProducts[item];
 
-  for (const item of cart) {
-    if (storeProducts[item]) {
-      total = total + storeProducts[item];
-    } else {
-      console.log(item + " is not found in the store");
-    }
-  }
+  const itemButton = document.createElement("button");
 
-  return total;
+  const buttonText = document.createTextNode(item + " - $" + price.toFixed(2));
+
+  itemButton.appendChild(buttonText);
+
+  itemButton.addEventListener("click", function(event) {
+    addToCart(item, price);
+  });
+
+  storeItemsDiv.appendChild(itemButton);
 }
 
-const totalPrice = getCartTotal(shoppingCart);
-console.log("Total price: $" + totalPrice.toFixed(2));
+const cartList = document.getElementById("cart");
+const cartTotalSpan = document.getElementById("cart-total");
+
+let total = 0;
+
+function addToCart(item, price) {
+  const li = document.createElement("li");
+
+  const itemText = document.createTextNode(item + " - $" + price.toFixed(2));
+
+  li.appendChild(itemText);
+
+  cartList.appendChild(li);
+
+  total = total + price;
+
+  cartTotalSpan.innerHTML = total.toFixed(2);
+}
