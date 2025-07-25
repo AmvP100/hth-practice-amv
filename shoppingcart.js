@@ -6,26 +6,26 @@ const storeProducts = {
   cheese: 4.0
 };
 
-const storeItemsDiv = document.getElementById("store-items");
+// const storeItemsDiv = document.getElementById("store-items");
 
-for (const item in storeProducts) {
-  const price = storeProducts[item];
+// for (const item in storeProducts) {
+//   const price = storeProducts[item];
 
-  const itemButton = document.createElement("button");
+//   const itemButton = document.createElement("button");
 
-  const buttonText = document.createTextNode(item + " - $" + price.toFixed(2));
+//   const buttonText = document.createTextNode(item + " - $" + price.toFixed(2));
 
-  itemButton.appendChild(buttonText);
+//   itemButton.appendChild(buttonText);
 
-  itemButton.addEventListener("click", function(event) {
-    addToCart(item, price);
-  });
+//   itemButton.addEventListener("click", function(event) {
+//     addToCart(item, price);
+//   });
 
-  storeItemsDiv.appendChild(itemButton);
-}
+//   storeItemsDiv.appendChild(itemButton);
+// }
 
-const cartList = document.getElementById("cart");
-const cartTotalSpan = document.getElementById("cart-total");
+// const cartList = document.getElementById("cart");
+// const cartTotalSpan = document.getElementById("cart-total");
 
 let total = 0;
 
@@ -42,3 +42,15 @@ function addToCart(item, price) {
 
   cartTotalSpan.innerHTML = total.toFixed(2);
 }
+
+function calculateTotal(cart) {
+  let total = 0;
+  for (const item of cart) {
+    if (storeProducts[item]) {
+      total += storeProducts[item];
+    }
+  }
+  return total;
+}
+
+module.exports = { calculateTotal };
